@@ -152,7 +152,7 @@ function App() {
             {isLoading && (
               <div className="flex gap-4 animate-in fade-in duration-300">
                 <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shrink-0 border border-blue-500">
-                  <Bot size={18} className="text-white" />
+                  <MessageSquareHeart size={18} className="text-white" />
                 </div>
                 <div className="bg-[#161b22] border border-slate-800 px-5 py-4 rounded-2xl rounded-tl-none flex gap-1.5">
                   <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
