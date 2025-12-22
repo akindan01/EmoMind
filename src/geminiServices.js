@@ -24,7 +24,7 @@ export const debugListModels = async () => {
 export const sendMessageToGemini = async (chatHistory, userMessage) => {
     try {
         // FIX: Changed "gemini-pro" to "gemini-1.5-flash"
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
         const systemPrompt = `
             You are EmoMate, an empathetic, emotionally intelligent AI assistant. 
