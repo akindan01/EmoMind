@@ -18,13 +18,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto-scroll to latest message
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   useEffect(scrollToBottom, [messages, isLoading]);
 
-  // Session Management
   const startNewSession = () => {
     if (messages.length === 0 || window.confirm("Start a new session? This will clear the current conversation for your privacy.")) {
       setMessages([]);
@@ -75,7 +73,6 @@ function App() {
   return (
     <div className="flex flex-col h-screen bg-[#0d1117] text-slate-200 font-sans selection:bg-blue-500/30">
 
-      {/* ---------------- NAVIGATION BAR ---------------- */}
       <nav className="flex justify-between items-center h-16 px-6 bg-[#161b22]/80 backdrop-blur-md border-b border-slate-800 shrink-0 z-20 sticky top-0">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/20">
@@ -96,11 +93,8 @@ function App() {
         </button>
       </nav>
 
-      {/* ---------------- CHAT CONTENT ---------------- */}
       <main className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
         <div className="max-w-3xl mx-auto px-4 py-8 md:py-12 min-h-full flex flex-col">
-
-          {/* Welcome Screen */}
           {messages.length === 0 && (
             <div className="flex-1 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-700">
               <div className="w-24 h-24 bg-blue-600/10 rounded-[2rem] flex items-center justify-center mb-8 border border-blue-500/20">
@@ -131,13 +125,12 @@ function App() {
             </div>
           )}
 
-          {/* Message List */}
           <div className="space-y-10">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex gap-4 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"} animate-in slide-in-from-bottom-4 fade-in duration-500`}>
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-md ${msg.role === "user" ? "bg-slate-800 border border-slate-700" : "bg-blue-600 border border-blue-500"
                   }`}>
-                  {msg.role === "user" ? <User size={18} className="text-slate-400" /> : <Bot size={18} className="text-white" />}
+                  {msg.role === "user" ? <User size={18} className="text-slate-400" /> : <MessageSquareHeart size={18} className="text-white" />}
                 </div>
 
                 <div className={`max-w-[85%] md:max-w-[80%] space-y-2 ${msg.role === "user" ? "text-right" : "text-left"}`}>
@@ -156,7 +149,6 @@ function App() {
               </div>
             ))}
 
-            {/* Loading Indicator */}
             {isLoading && (
               <div className="flex gap-4 animate-in fade-in duration-300">
                 <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shrink-0 border border-blue-500">
@@ -174,7 +166,6 @@ function App() {
         </div>
       </main>
 
-      {/* ---------------- FOOTER & INPUT ---------------- */}
       <footer className="bg-[#161b22] border-t border-slate-800 p-4 md:p-6 shrink-0 z-10 shadow-[0_-10px_20px_rgba(0,0,0,0.3)]">
         <div className="max-w-3xl mx-auto space-y-4">
 
@@ -182,9 +173,7 @@ function App() {
             <ShieldAlert size={16} className="text-red-500 shrink-0" />
             <p>
               I am an AI, not a healthcare professional. If you're in a crisis, please call
-              <a href="https://988lifeline.org" target="_blank" className="text-red-400 font-bold hover:underline inline-flex items-center gap-1 mx-1">
-                988 <ExternalLink size={10} />
-              </a> or visit your nearest emergency room.
+              or visit your nearest emergency room.
             </p>
           </div>
 
